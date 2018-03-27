@@ -1,8 +1,5 @@
 bootstrap
-Microsoft.ApplicationInsights.Web
 Microsoft.AspNet.Mvc
 Microsoft.AspNet.Web.Optimization
 Microsoft.CodeDom.Providers.DotNetCompilerPlatform
-Microsoft.jQuery.Unobtrusive.Validation
-Modernizr
 Respond

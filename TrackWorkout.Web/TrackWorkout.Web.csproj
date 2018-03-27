@@ -102,10 +102,25 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\jquery-1.10.2-vsdoc.js">
+    <Content Include="Scripts\jquery-3.3.1-vsdoc.js">
       <Paket>True</Paket>
     </Content>
-    <Content Include="Scripts\jquery.validate-vsdoc.js">
+    <Content Include="Scripts\jquery-3.3.1.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.min.map">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.slim.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js">
+      <Paket>True</Paket>
+    </Content>
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map">
       <Paket>True</Paket>
     </Content>
     <Content Include="Scripts\bootstrap.js">
@@ -118,28 +133,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Scripts\jquery-1.10.2.min.js">
-      <Paket>True</Paket>
-    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Scripts\jquery.validate.min.js">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Scripts\jquery.validate.unobtrusive.js">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js">
-      <Paket>True</Paket>
-    </Content>
-    <Content Include="Scripts\modernizr-2.6.2.js">
-      <Paket>True</Paket>
-    </Content>
     <Content Include="Scripts\respond.js">
       <Paket>True</Paket>
     </Content>
@@ -180,9 +174,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
-    <Content Include="Scripts\jquery-1.10.2.min.map">
-      <Paket>True</Paket>
-    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TrackWorkout.Models\TrackWorkout.Models.csproj">
+      <Project>{af01003c-4ab2-4214-9fd9-2715018840eb}</Project>
+      <Name>TrackWorkout.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -231,83 +228,6 @@
       <ItemGroup>
         <Reference Include="Antlr3.Runtime">
           <HintPath>..\packages\Antlr\lib\Antlr3.Runtime.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.1'">
-      <ItemGroup>
-        <Reference Include="Microsoft.ApplicationInsights">
-          <HintPath>..\packages\Microsoft.ApplicationInsights\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.1'">
-      <ItemGroup>
-        <Reference Include="Microsoft.AI.Agent.Intercept">
-          <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.1'">
-      <ItemGroup>
-        <Reference Include="Microsoft.AI.DependencyCollector">
-          <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.1'">
-      <ItemGroup>
-        <Reference Include="Microsoft.AI.PerfCounterCollector">
-          <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.1'">
-      <ItemGroup>
-        <Reference Include="Microsoft.AI.Web">
-          <HintPath>..\packages\Microsoft.ApplicationInsights.Web\lib\net45\Microsoft.AI.Web.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.1'">
-      <ItemGroup>
-        <Reference Include="Microsoft.AI.WindowsServer">
-          <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And $(TargetFrameworkVersion) == 'v4.7.1'">
-      <ItemGroup>
-        <Reference Include="Microsoft.AI.ServerTelemetryChannel">
-          <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>
