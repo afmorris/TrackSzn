@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class Libraries", "Class Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWorkout.Models", "TrackWorkout.Models\TrackWorkout.Models.csproj", "{AF01003C-4AB2-4214-9FD9-2715018840EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWorkout.Data", "TrackWorkout.Data\TrackWorkout.Data.csproj", "{7E09D881-3770-4F85-83E5-41172A4C31E9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,17 +28,12 @@ Global
 		{AF01003C-4AB2-4214-9FD9-2715018840EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF01003C-4AB2-4214-9FD9-2715018840EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF01003C-4AB2-4214-9FD9-2715018840EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E09D881-3770-4F85-83E5-41172A4C31E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E09D881-3770-4F85-83E5-41172A4C31E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E09D881-3770-4F85-83E5-41172A4C31E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E09D881-3770-4F85-83E5-41172A4C31E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AF01003C-4AB2-4214-9FD9-2715018840EB} = {9195E7E5-5723-47C9-80B3-AA54BDEE42D9}
-		{7E09D881-3770-4F85-83E5-41172A4C31E9} = {9195E7E5-5723-47C9-80B3-AA54BDEE42D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60273DFB-B4ED-49F0-A18A-722AE2583F90}
