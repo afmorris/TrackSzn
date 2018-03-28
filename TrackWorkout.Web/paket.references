@@ -1,5 +1,4 @@
 bootstrap
 Microsoft.AspNet.Mvc
-Microsoft.AspNet.Web.Optimization
 Microsoft.CodeDom.Providers.DotNetCompilerPlatform
 Respond
