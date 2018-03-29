@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Class Libraries", "Class Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWorkout.Models", "TrackWorkout.Models\TrackWorkout.Models.csproj", "{AF01003C-4AB2-4214-9FD9-2715018840EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackWorkout.ViewModels", "TrackWorkout.ViewModels\TrackWorkout.ViewModels.csproj", "{6A119D60-E20C-4C65-8C8E-ADC31EA8F30C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{AF01003C-4AB2-4214-9FD9-2715018840EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF01003C-4AB2-4214-9FD9-2715018840EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF01003C-4AB2-4214-9FD9-2715018840EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A119D60-E20C-4C65-8C8E-ADC31EA8F30C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A119D60-E20C-4C65-8C8E-ADC31EA8F30C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A119D60-E20C-4C65-8C8E-ADC31EA8F30C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A119D60-E20C-4C65-8C8E-ADC31EA8F30C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AF01003C-4AB2-4214-9FD9-2715018840EB} = {9195E7E5-5723-47C9-80B3-AA54BDEE42D9}
+		{6A119D60-E20C-4C65-8C8E-ADC31EA8F30C} = {9195E7E5-5723-47C9-80B3-AA54BDEE42D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60273DFB-B4ED-49F0-A18A-722AE2583F90}

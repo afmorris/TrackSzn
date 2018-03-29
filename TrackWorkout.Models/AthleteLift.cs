@@ -10,5 +10,8 @@ namespace TrackWorkout.Models
         public int Repetitions { get; set; }
         public float Weight { get; set; }
         public DateTimeOffset Date { get; set; }
+
+        public virtual Athlete Athlete { get; set; }
+        public virtual Lift Lift { get; set; }
     }
 }

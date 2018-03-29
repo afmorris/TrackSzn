@@ -1,9 +1,12 @@
 ﻿using System.Web.Mvc;
+using ServiceStack.Mvc;
 
 namespace TrackWorkout.Web.Controllers
 {
-    public class HomeController : Controller
+    [RoutePrefix("")]
+    public class HomeController : ServiceStackController
     {
+        [Route("")]
         public ActionResult Index()
         {
             return View();
