@@ -1,6 +1,0 @@
-source https://api.nuget.org/v3/index.json
-
-nuget bootstrap 3.0.0 restriction: >= net471
-nuget Microsoft.AspNet.Mvc 5.2.3 restriction: >= net471
-nuget Microsoft.CodeDom.Providers.DotNetCompilerPlatform 1.0.8 restriction: >= net471
-nuget Respond 1.2.0 restriction: >= net471
