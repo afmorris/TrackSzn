@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using ServiceStack.MiniProfiler;
 using ServiceStack.Mvc;
 using ServiceStack.OrmLite;
 using TrackWorkout.Models;
@@ -20,18 +21,12 @@ namespace TrackWorkout.Web.Controllers
             return View(vm);
         }
 
-        [Route("athletes/{id:guid}")]
-        public ActionResult Athlete(Guid id)
+        [Route("athletes/{id:int}")]
+        public ActionResult Athlete(int id)
         {
-            var athlete = Db.SingleById<Athlete>(id);
-            var athleteLifts = Db.Select<AthleteLift>(x => x.AthleteId == id);
-            foreach (var athleteLift in athleteLifts)
-            {
-                athleteLift.Athlete = athlete;
-                athleteLift.Lift = Db.SingleById<Lift>(athleteLift.LiftId);
-            }
-
-            var vm = new AthleteViewModel(athlete, athleteLifts);
+            var athlete = Db.LoadSingleById<Athlete>(id);
+            athlete.AthleteLifts = Db.LoadSelect<AthleteLift>(x => x.AthleteId == id);
+            var vm = new AthleteViewModel(athlete);
 
             return this.View(vm);
         }

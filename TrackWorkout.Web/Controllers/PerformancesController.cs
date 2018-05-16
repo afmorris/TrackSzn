@@ -13,8 +13,8 @@ namespace TrackWorkout.Web.Controllers
             return this.View();
         }
 
-        [Route("athletes/{id:guid}")]
-        public ActionResult Athlete(Guid id)
+        [Route("athletes/{id:int}")]
+        public ActionResult Athlete(int id)
         {
             return this.View(id);
         }

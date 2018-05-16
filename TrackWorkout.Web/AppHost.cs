@@ -21,6 +21,7 @@ namespace TrackWorkout.Web
                 HandlerFactoryPath = "api"
             });
 
+            Plugins.Add(new MiniProfilerFeature());
             container.Register<IDbConnectionFactory>(c =>
                 new OrmLiteConnectionFactory(":memory:", SqliteDialect.Provider)
                 {
@@ -32,10 +33,16 @@ namespace TrackWorkout.Web
                 db.DropAndCreateTable<Athlete>();
                 db.DropAndCreateTable<Event>();
                 db.DropAndCreateTable<Lift>();
+                db.DropAndCreateTable<Meet>();
+                db.DropAndCreateTable<AthleteLift>();
+                db.DropAndCreateTable<AthletePerformance>();
 
                 db.InsertAll(SeedData.Athletes);
                 db.InsertAll(SeedData.Events);
                 db.InsertAll(SeedData.Lifts);
+                db.InsertAll(SeedData.Meets);
+                db.InsertAll(SeedData.AthleteLifts);
+                db.InsertAll(SeedData.AthletePerformances);
             }
 
             ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));

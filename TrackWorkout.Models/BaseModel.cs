@@ -1,12 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using ServiceStack.DataAnnotations;
 
 namespace TrackWorkout.Models
 {
     public abstract class BaseModel : IModel
     {
         [Key]
-        public Guid Id { get; set; }
-        public int ClusterId { get; set; }
+        [AutoIncrement]
+        public int Id { get; set; }
     }
 }

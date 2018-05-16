@@ -5,13 +5,11 @@ namespace TrackWorkout.ViewModels.Lifts
 {
     public class AthleteViewModel
     {
-        public AthleteViewModel(Athlete athlete, List<AthleteLift> athleteLifts)
+        public AthleteViewModel(Athlete athlete)
         {
             this.Athlete = athlete;
-            this.AthleteLifts = athleteLifts;
         }
 
         public Athlete Athlete { get; }
-        public List<AthleteLift> AthleteLifts { get; }
     }
 }

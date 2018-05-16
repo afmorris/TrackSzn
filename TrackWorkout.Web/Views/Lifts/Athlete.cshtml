@@ -9,7 +9,23 @@
 <table class="table table-bordered table-hover">
     <thead>
     <tr>
-        <th></th>
+        <th>Date</th>
+        <th>Lift</th>
+        <th>Set #</th>
+        <th>Reps</th>
+        <th>Weight</th>
     </tr>
     </thead>
+    <tbody>
+        @foreach (var athleteLift in Model.Athlete.AthleteLifts)
+        {
+            <tr>
+                <td>@athleteLift.Date.ToString("d")</td>
+                <td>@athleteLift.Lift.Name</td>
+                <td>@athleteLift.SetNumber</td>
+                <td>@athleteLift.Repetitions</td>
+                <td>@athleteLift.Weight</td>
+            </tr>
+        }
+    </tbody>
 </table>
