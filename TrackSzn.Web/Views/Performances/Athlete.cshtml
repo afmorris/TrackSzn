@@ -1,0 +1,40 @@
+﻿@using TrackSzn.Web.Extensions
+@model TrackSzn.ViewModels.Performances.AthleteViewModel
+
+@{
+    ViewBag.Title = $"{Model.Athlete.Name} Performances";
+}
+
+<h2>@Model.Athlete.Name Performances</h2>
+<p>
+    This page details @Model.Athlete.Name's performances throughout his/her career.
+</p>
+
+<hr />
+
+@foreach (var eventGrouping in Model.PerformancesByEvent)
+{
+    <h3>@eventGrouping.Key.Name</h3>
+
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Meet</th>
+            <th>Date</th>
+            <th>Performance</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var performance in eventGrouping)
+        {
+            <tr>
+                <td>@performance.Meet.Name</td>
+                <td>@performance.Meet.Date.ToString("d")</td>
+                <td>@performance.Performance.FormatPerformance(eventGrouping.Key)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    <hr />
+}
