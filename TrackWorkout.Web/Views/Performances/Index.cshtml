@@ -1,7 +1,31 @@
-﻿@{
-    ViewBag.Title = "Performances";
+﻿@model TrackWorkout.ViewModels.Performances.IndexViewModel
+
+@{
+    ViewBag.Title = "Athlete Performances";
 }
 
-<h2>Performances</h2>
+<h2>Athlete Performances</h2>
+<p>
+    Use this page to navigate to specific athlete performance information. Athletes are grouped by graduation year.
+</p>
 
-@Html.ActionLink("Athlete Link", "Athlete", "Performances", new { id = Guid.NewGuid() }, new {})
+<hr />
+
+<div class="card-deck">
+    @foreach (var graduationYearGroup in Model.AthletesByGraduationYear)
+    {
+        <div class="card">
+            <div class="card-header">
+                @graduationYearGroup.Key
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var athlete in graduationYearGroup)
+                {
+                    <li class="list-group-item">
+                        @Html.ActionLink(athlete.Name, "Athlete", "Performances", new { id = athlete.Id }, new { })
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>

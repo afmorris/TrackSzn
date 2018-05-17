@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Lifts\AthleteViewModel.cs" />
     <Compile Include="Lifts\IndexViewModel.cs" />
+    <Compile Include="Performances\AthleteViewModel.cs" />
+    <Compile Include="Performances\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

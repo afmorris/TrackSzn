@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using ServiceStack.MiniProfiler;
 using ServiceStack.Mvc;
 using ServiceStack.OrmLite;
 using TrackWorkout.Models;
@@ -15,8 +13,10 @@ namespace TrackWorkout.Web.Controllers
         [Route("")]
         public ActionResult Index()
         {
-            var athletes = Db.Select<Athlete>().OrderBy(x => x.Name).ToList();
-            var vm = new IndexViewModel(athletes);
+            var athletes = Db.Select<Athlete>();
+
+            var athletesByGraduationYear = athletes.OrderBy(x => x.Name).GroupBy(x => x.GraduationYear).OrderByDescending(x => x.Key);
+            var vm = new IndexViewModel(athletesByGraduationYear);
 
             return View(vm);
         }
@@ -26,7 +26,9 @@ namespace TrackWorkout.Web.Controllers
         {
             var athlete = Db.LoadSingleById<Athlete>(id);
             athlete.AthleteLifts = Db.LoadSelect<AthleteLift>(x => x.AthleteId == id);
-            var vm = new AthleteViewModel(athlete);
+
+            var liftsByDay = athlete.AthleteLifts.OrderBy(x => x.LiftId).ThenBy(x => x.SetNumber).GroupBy(x => x.Date);
+            var vm = new AthleteViewModel(athlete, liftsByDay);
 
             return this.View(vm);
         }

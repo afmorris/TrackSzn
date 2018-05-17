@@ -46,10 +46,10 @@ namespace TrackWorkout.Web
 
         private static class MeetIds
         {
-            internal static readonly int PTCTrackAndFieldChampionships = 1;
-            internal static readonly int DualvsWoodridge = 2;
-            internal static readonly int OrangeRelays = 3;
-            internal static readonly int Smithville9th10thGradeInvitational = 4;
+            internal static readonly int DualvsWoodridge = 1;
+            internal static readonly int OrangeRelays = 2;
+            internal static readonly int Smithville9th10thGradeInvitational = 3;
+            internal static readonly int PTCTrackAndFieldChampionships = 4;
         }
 
         public static List<Athlete> Athletes => new List<Athlete>
@@ -91,10 +91,10 @@ namespace TrackWorkout.Web
 
         public static List<Meet> Meets => new List<Meet>
         {
-            new Meet { Name = "PTC Track and Field Championships", Date = new DateTimeOffset(2018, 5, 9, 0, 0, 0, TimeSpan.Zero) },
             new Meet { Name = "Dual vs. Woodridge", Date = new DateTimeOffset(2018, 4, 24, 0, 0, 0, TimeSpan.Zero) },
             new Meet { Name = "Orange Relays", Date = new DateTimeOffset(2018, 4, 27, 0, 0, 0, TimeSpan.Zero) },
             new Meet { Name = "Smithville 9th/10th Grade Invitational", Date = new DateTimeOffset(2018, 5, 7, 0, 0, 0, TimeSpan.Zero) },
+            new Meet { Name = "PTC Track and Field Championships", Date = new DateTimeOffset(2018, 5, 9, 0, 0, 0, TimeSpan.Zero) },
         };
 
         public static List<AthleteLift> AthleteLifts => new List<AthleteLift>
@@ -112,7 +112,7 @@ namespace TrackWorkout.Web
             new AthletePerformance { AthleteId = AthleteIds.NateClingan, EventId = EventIds.ShotPut, MeetId = MeetIds.PTCTrackAndFieldChampionships, Performance = 582 },
             new AthletePerformance { AthleteId = AthleteIds.JakeKemp, EventId = EventIds.ShotPut, MeetId = MeetIds.PTCTrackAndFieldChampionships, Performance = 476 },
             new AthletePerformance { AthleteId = AthleteIds.NateClingan, EventId = EventIds.Discus, MeetId = MeetIds.PTCTrackAndFieldChampionships, Performance = 1693 },
-            new AthletePerformance { AthleteId = AthleteIds.JakeKemp, EventId = EventIds.Discus, MeetId = MeetIds.PTCTrackAndFieldChampionships, Performance = 476 },
+            new AthletePerformance { AthleteId = AthleteIds.JakeKemp, EventId = EventIds.Discus, MeetId = MeetIds.PTCTrackAndFieldChampionships, Performance = 1212 },
         };
     }
 }

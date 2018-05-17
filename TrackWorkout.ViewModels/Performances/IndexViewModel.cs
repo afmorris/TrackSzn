@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using TrackWorkout.Models;
 
-namespace TrackWorkout.ViewModels.Lifts
+namespace TrackWorkout.ViewModels.Performances
 {
     public class IndexViewModel
     {
