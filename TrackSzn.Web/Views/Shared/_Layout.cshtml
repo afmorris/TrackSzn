@@ -19,16 +19,42 @@
 
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
-                    </li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Performances")">Performances</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="eventDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Events
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="eventDropdown">
+                                @Html.ActionLink("Management", "Index", "Events", null, new { @class = "dropdown-item" })
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action("Index", "Lifts")">Lifts</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="liftDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Lifts
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="liftDropdown">
+                                @Html.ActionLink("Management", "Index", "Lifts", null, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="meetDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Meets
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="meetDropdown">
+                                @Html.ActionLink("Management", "Index", "Meets", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Calendar", "Calendar", "Meets", null, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="athleteDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Athletes
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="athleteDropdown">
+                                @Html.ActionLink("Management", "Index", "Athletes", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Lifts", "Lifts", "Athletes", null, new { @class = "dropdown-item" })
+                                @Html.ActionLink("Performances", "Performances", "Athletes", null, new { @class = "dropdown-item" })
+                            </div>
                         </li>
                     }
                 </ul>

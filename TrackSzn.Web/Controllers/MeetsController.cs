@@ -4,11 +4,17 @@ using ServiceStack.Mvc;
 namespace TrackSzn.Web.Controllers
 {
     [Authorize]
-    [RoutePrefix("lifts")]
-    public class LiftsController : ServiceStackController
+    [RoutePrefix("meets")]
+    public class MeetsController : ServiceStackController
     {
         [Route("")]
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        [Route("calendar")]
+        public ActionResult Calendar()
         {
             return View();
         }

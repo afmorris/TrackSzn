@@ -41,10 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lifts\AthleteViewModel.cs" />
+    <Compile Include="Athletes\AthleteLiftsViewModel.cs" />
+    <Compile Include="Athletes\AthletePerformancesViewModel.cs" />
+    <Compile Include="Athletes\IndexViewModel.cs" />
+    <Compile Include="Athletes\LiftsViewModel.cs" />
+    <Compile Include="Athletes\PerformancesViewModel.cs" />
+    <Compile Include="Events\IndexViewModel.cs" />
     <Compile Include="Lifts\IndexViewModel.cs" />
-    <Compile Include="Performances\AthleteViewModel.cs" />
-    <Compile Include="Performances\IndexViewModel.cs" />
+    <Compile Include="Meets\CalendarViewModel.cs" />
+    <Compile Include="Meets\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,5 +58,6 @@
       <Name>TrackSzn.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

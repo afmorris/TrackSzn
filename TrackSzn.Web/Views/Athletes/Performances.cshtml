@@ -1,0 +1,31 @@
+﻿@model TrackSzn.ViewModels.Athletes.PerformancesViewModel
+
+@{
+    ViewBag.Title = "Athlete Performances";
+}
+
+<h2>Athlete Performances</h2>
+<p>
+    Use this page to navigate to specific athlete performance information. Athletes are grouped by graduation year.
+</p>
+
+<hr />
+
+<div class="card-deck">
+    @foreach (var graduationYearGroup in Model.AthletesByGraduationYear)
+    {
+        <div class="card">
+            <div class="card-header">
+                @graduationYearGroup.Key
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var athlete in graduationYearGroup)
+                {
+                    <li class="list-group-item">
+                        @Html.ActionLink(athlete.Name, "AthletePerformances", "Athletes", new { id = athlete.Id }, new { })
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>

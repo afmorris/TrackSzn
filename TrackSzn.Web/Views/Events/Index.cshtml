@@ -1,0 +1,19 @@
+﻿@model TrackSzn.ViewModels.Events.IndexViewModel
+
+@{
+    ViewBag.Title = "Events";
+}
+
+<h2>Events</h2>
+<p>
+    Use this page to manage your events.
+</p>
+
+<hr />
+
+<ul>
+    @foreach (var ev in Model.Events)
+    {
+        <li>@ev.Name</li>
+    }
+</ul>

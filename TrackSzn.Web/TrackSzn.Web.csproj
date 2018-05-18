@@ -170,9 +170,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\SessionAuthenticationConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AthletesController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LiftsController.cs" />
-    <Compile Include="Controllers\PerformancesController.cs" />
+    <Compile Include="Controllers\MeetsController.cs" />
     <Compile Include="Extensions\EventExtensions.cs" />
     <Compile Include="Extensions\FloatExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -267,9 +269,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Lifts\Index.cshtml" />
-    <Content Include="Views\Lifts\Athlete.cshtml" />
-    <Content Include="Views\Performances\Index.cshtml" />
-    <Content Include="Views\Performances\Athlete.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -279,10 +278,17 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\Athletes\Index.cshtml" />
+    <Content Include="Views\Athletes\Lifts.cshtml" />
+    <Content Include="Views\Athletes\AthleteLifts.cshtml" />
+    <Content Include="Views\Athletes\Performances.cshtml" />
+    <Content Include="Views\Athletes\AthletePerformances.cshtml" />
+    <Content Include="Views\Meets\Index.cshtml" />
+    <Content Include="Views\Meets\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

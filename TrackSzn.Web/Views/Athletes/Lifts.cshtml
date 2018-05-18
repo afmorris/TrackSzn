@@ -1,12 +1,12 @@
-﻿@model TrackSzn.ViewModels.Performances.IndexViewModel
+﻿@model TrackSzn.ViewModels.Athletes.LiftsViewModel
 
 @{
-    ViewBag.Title = "Athlete Performances";
+    ViewBag.Title = "Athlete Lifts";
 }
 
-<h2>Athlete Performances</h2>
+<h2>Athlete Lifts</h2>
 <p>
-    Use this page to navigate to specific athlete performance information. Athletes are grouped by graduation year.
+    Use this page to navigate to specific athlete lifting information. Athletes are grouped by graduation year.
 </p>
 
 <hr />
@@ -22,7 +22,7 @@
                 @foreach (var athlete in graduationYearGroup)
                 {
                     <li class="list-group-item">
-                        @Html.ActionLink(athlete.Name, "Athlete", "Performances", new { id = athlete.Id }, new { })
+                        @Html.ActionLink(athlete.Name, "AthleteLifts", "Athletes", new { id = athlete.Id }, new { })
                     </li>
                 }
             </ul>

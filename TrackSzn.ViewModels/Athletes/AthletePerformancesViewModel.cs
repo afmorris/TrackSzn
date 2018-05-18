@@ -2,11 +2,11 @@
 using System.Linq;
 using TrackSzn.Models;
 
-namespace TrackSzn.ViewModels.Performances
+namespace TrackSzn.ViewModels.Athletes
 {
-    public class AthleteViewModel
+    public class AthletePerformancesViewModel
     {
-        public AthleteViewModel(Athlete athlete, IEnumerable<IGrouping<Event, AthletePerformance>> performancesByEvent)
+        public AthletePerformancesViewModel(Athlete athlete, IEnumerable<IGrouping<Event, AthletePerformance>> performancesByEvent)
         {
             this.Athlete = athlete;
             this.PerformancesByEvent = performancesByEvent;

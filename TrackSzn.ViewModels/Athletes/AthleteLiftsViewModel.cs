@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using TrackSzn.Models;
 
-namespace TrackSzn.ViewModels.Lifts
+namespace TrackSzn.ViewModels.Athletes
 {
-    public class AthleteViewModel
+    public class AthleteLiftsViewModel
     {
-        public AthleteViewModel(Athlete athlete, IEnumerable<IGrouping<DateTimeOffset, AthleteLift>> liftsByDay)
+        public AthleteLiftsViewModel(Athlete athlete, IEnumerable<IGrouping<DateTimeOffset, AthleteLift>> liftsByDay)
         {
             this.Athlete = athlete;
             this.LiftsByDay = liftsByDay;

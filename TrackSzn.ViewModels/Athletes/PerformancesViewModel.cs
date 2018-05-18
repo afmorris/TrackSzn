@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using TrackSzn.Models;
 
-namespace TrackSzn.ViewModels.Performances
+namespace TrackSzn.ViewModels.Athletes
 {
-    public class IndexViewModel
+    public class PerformancesViewModel
     {
-        public IndexViewModel(IOrderedEnumerable<IGrouping<int, Athlete>> athletesByGraduationYear)
+        public PerformancesViewModel(IOrderedEnumerable<IGrouping<int, Athlete>> athletesByGraduationYear)
         {
             this.AthletesByGraduationYear = athletesByGraduationYear;
         }
