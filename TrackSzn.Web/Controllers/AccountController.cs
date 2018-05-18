@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Globalization;
 using System.IdentityModel.Services;
 using System.Web;
 using System.Web.Mvc;
@@ -28,7 +27,7 @@ namespace TrackSzn.Web.Controllers
                 .WithScope("openid profile")
                 // adding this audience will cause Auth0 to use the OIDC-Conformant pipeline
                 // you don't need it if your client is flagged as OIDC-Conformant (Advance Settings | OAuth)
-                .WithAudience("https://" + @ConfigurationManager.AppSettings["auth0:Domain"] + "/userinfo");
+                .WithAudience($"https://{ConfigurationManager.AppSettings["auth0:Domain"]}/userinfo");
 
             if (!string.IsNullOrEmpty(returnUrl))
             {
@@ -47,13 +46,8 @@ namespace TrackSzn.Web.Controllers
             // Redirect to Auth0's logout endpoint.
             // After terminating the user's session, Auth0 will redirect to the 
             // returnTo URL, which you will have to add to the list of allowed logout URLs for the client.
-            var returnTo = Url.Action("Index", "Home", null, protocol: Request.Url.Scheme);
-            return Redirect(
-              string.Format(CultureInfo.InvariantCulture,
-                "https://{0}/v2/logout?returnTo={1}&client_id={2}",
-                ConfigurationManager.AppSettings["auth0:Domain"],
-                Server.UrlEncode(returnTo),
-                ConfigurationManager.AppSettings["auth0:ClientId"]));
+            var returnTo = Url.Action("Index", "Home", null, Request.Url.Scheme);
+            return Redirect($"https://{ConfigurationManager.AppSettings["auth0:Domain"]}/v2/logout?returnTo={Server.UrlEncode(returnTo)}&client_id={ConfigurationManager.AppSettings["auth0:ClientId"]}");
         }
     }
 }
