@@ -7,6 +7,7 @@ using TrackSzn.ViewModels.Lifts;
 
 namespace TrackSzn.Web.Controllers
 {
+    [Authorize]
     [RoutePrefix("lifts")]
     public class LiftsController : ServiceStackController
     {

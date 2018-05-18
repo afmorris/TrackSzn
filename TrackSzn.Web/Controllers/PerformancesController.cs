@@ -8,6 +8,7 @@ using TrackSzn.ViewModels.Performances;
 
 namespace TrackSzn.Web.Controllers
 {
+    [Authorize]
     [RoutePrefix("performances")]
     public class PerformancesController : ServiceStackController
     {
