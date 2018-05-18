@@ -6,7 +6,11 @@ namespace TrackSzn.Models
     public abstract class BaseModel : IModel
     {
         [Key]
+        [PrimaryKey]
         [AutoIncrement]
         public int Id { get; set; }
+
+        [Index]
+        public string UserId { get; set; }
     }
 }

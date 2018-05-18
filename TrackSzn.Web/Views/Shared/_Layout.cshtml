@@ -12,23 +12,39 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">
-            @Html.ActionLink("Track Workout", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Track SZN", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Performances")">Performances</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Lifts")">Lifts</a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Performances")">Performances</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Lifts")">Lifts</a>
+                        </li>
+                    }
                 </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span class="navbar-text mr-2">
+                            Logged in as @User.Identity.Name
+                        </span>
+                        @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "btn btn-outline-info" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-outline-info" })
+                    }
+                </form>
             </div>
         </div>
     </nav>
