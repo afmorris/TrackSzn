@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Web.Mvc;
@@ -18,7 +19,7 @@ namespace TrackSzn.Web.Controllers
         public ActionResult Index()
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
-            var events = Db.Select<Event>(x => x.UserId == userId);
+            var events = Db.Select<Event>(x => x.UserId == userId && !x.IsDeleted);
 
             var vm = new IndexViewModel {Events = events};
 
@@ -38,7 +39,7 @@ namespace TrackSzn.Web.Controllers
         public ActionResult Create(CreateViewModel viewModel)
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
-            var existing = Db.Single<Event>(x => x.UserId == userId && x.Name == viewModel.Name);
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Name == viewModel.Name && !x.IsDeleted);
             if (existing == null)
             {
                 var ev = Mapper.Map<Event>(viewModel);
@@ -70,7 +71,7 @@ namespace TrackSzn.Web.Controllers
             {
                 if (!string.IsNullOrEmpty(createViewModel.Name))
                 {
-                    var existing = Db.Single<Event>(x => x.UserId == userId && x.Name == createViewModel.Name);
+                    var existing = Db.Single<Event>(x => x.UserId == userId && x.Name == createViewModel.Name && !x.IsDeleted);
                     if (existing == null)
                     {
                         var ev = Mapper.Map<Event>(createViewModel);
@@ -87,7 +88,7 @@ namespace TrackSzn.Web.Controllers
         public ActionResult EditExisting(int id)
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
-            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == id);
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == id && !x.IsDeleted);
             if (existing == null)
             {
                 return HttpNotFound();
@@ -103,7 +104,7 @@ namespace TrackSzn.Web.Controllers
         public ActionResult Edit(EditViewModel viewModel)
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
-            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == viewModel.Event.Id);
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == viewModel.Event.Id && !x.IsDeleted);
             if (existing == null)
             {
                 return HttpNotFound();
@@ -118,13 +119,13 @@ namespace TrackSzn.Web.Controllers
         public ActionResult DeleteExisting(int id)
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
-            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == id);
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == id && !x.IsDeleted);
             if (existing == null)
             {
                 return HttpNotFound();
             }
 
-            var athletePerformances = Db.LoadSelect<AthletePerformance>(x => x.UserId == userId && x.EventId == id).OrderBy(x => x.Athlete.Name).ThenBy(x => x.Meet.Date).ToList();
+            var athletePerformances = Db.LoadSelect<AthletePerformance>(x => x.UserId == userId && x.EventId == id && !x.IsDeleted).OrderBy(x => x.Athlete.Name).ThenBy(x => x.Meet.Date).ToList();
             var vm = new DeleteViewModel {Event = existing, AthletePerformances = athletePerformances};
 
             return View(vm);
@@ -136,14 +137,14 @@ namespace TrackSzn.Web.Controllers
         public ActionResult Delete(DeleteViewModel viewModel)
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
-            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == viewModel.Event.Id);
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == viewModel.Event.Id && !x.IsDeleted);
             if (existing == null)
             {
                 return HttpNotFound();
             }
 
-            Db.DeleteById<Event>(viewModel.Event.Id);
-            Db.Delete<AthletePerformance>(x => x.UserId == userId && x.EventId == viewModel.Event.Id);
+            Db.UpdateOnly(() => new Event { IsDeleted = true, DeletedDate = DateTimeOffset.Now }, where: x => x.Id == viewModel.Event.Id && x.UserId == userId && !x.IsDeleted);
+            Db.UpdateOnly(() => new AthletePerformance { IsDeleted = true, DeletedDate = DateTimeOffset.Now }, where: x => x.EventId == viewModel.Event.Id && x.UserId == userId && !x.IsDeleted);
             return RedirectToAction(nameof(Index));
         }
     }

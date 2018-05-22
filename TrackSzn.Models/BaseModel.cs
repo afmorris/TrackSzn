@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using ServiceStack.DataAnnotations;
 
 namespace TrackSzn.Models
@@ -12,5 +13,10 @@ namespace TrackSzn.Models
 
         [Index]
         public string UserId { get; set; }
+
+        [Index]
+        public bool IsDeleted { get; set; } = false;
+
+        public DateTimeOffset DeletedDate { get; set; } = DateTimeOffset.MaxValue;
     }
 }
