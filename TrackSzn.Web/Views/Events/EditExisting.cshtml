@@ -1,11 +1,11 @@
-﻿@model TrackSzn.ViewModels.Events.CreateViewModel
+﻿@model TrackSzn.ViewModels.Events.EditViewModel
 
 @{
-    ViewBag.Title = "Create an Event";
-    ViewBag.Description = "Use this page to create a new event.";
+    ViewBag.Title = $"Edit Event | {Model.Event.Name}";
+    ViewBag.Description = "Use this page to edit the event listed below.";
 }
 
-@using (Html.BeginForm("Create", "Events", FormMethod.Post, new { }))
+@using (Html.BeginForm("Edit", "Events", FormMethod.Post, new { }))
 {
     @Html.AntiForgeryToken()
     if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
@@ -20,11 +20,13 @@
     }
 
     <div class="form-group">
-        @Html.LabelFor(x => x.Name)
-        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", autofocus = "autofocus", tabindex = 1 })
+        @Html.LabelFor(x => x.Event.Name)
+        @Html.TextBoxFor(x => x.Event.Name, new { @class = "form-control", autofocus = "autofocus", tabindex = 1 })
     </div>
 
-    <button type="submit" class="btn btn-outline-info" tabindex="2">Create Event</button>
+    @Html.HiddenFor(x => x.Event.UserId)
+    @Html.HiddenFor(x => x.Event.Id)
+    <button type="submit" class="btn btn-outline-info" tabindex="2">Edit Event</button>
 }
 
 <hr />

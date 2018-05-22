@@ -2,14 +2,8 @@
 
 @{
     ViewBag.Title = "Bulk Create Events";
+    ViewBag.Description = "Use this page to create events in bulk.";
 }
-
-<h2>Bulk Create Events</h2>
-<p>
-    Use this page to create events in bulk.
-</p>
-
-<hr />
 
 @using (Html.BeginForm("BulkCreate", "Events", FormMethod.Post, new { }))
 {
@@ -44,7 +38,7 @@
                             @{
                                 var j = i;
                             }
-                            @Html.TextBoxFor(x => x.CreateViewModels[j].Name, new { @class = "form-control", placeholder = "Event Name" })
+                            @Html.TextBoxFor(x => x.CreateViewModels[j].Name, new { @class = "form-control", placeholder = "Event Name", autofocus = "autofocus", tabindex = 1 })
                         </td>
                         <td class="buttonCell">
                             @if (i > 0)
@@ -58,7 +52,7 @@
         </tbody>
     </table>
 
-    <button type="submit" class="btn btn-outline-info">Save Bulk Data</button>
+    <button type="submit" class="btn btn-outline-info" tabindex="2">Save Bulk Data</button>
 }
 
 <hr />

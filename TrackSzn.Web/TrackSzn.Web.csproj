@@ -292,8 +292,8 @@
     <Content Include="Views\Meets\Index.cshtml" />
     <Content Include="Views\Meets\Calendar.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />
-    <Content Include="Views\Events\Edit.cshtml" />
-    <Content Include="Views\Events\Delete.cshtml" />
+    <Content Include="Views\Events\EditExisting.cshtml" />
+    <Content Include="Views\Events\DeleteExisting.cshtml" />
     <Content Include="Views\Events\BulkCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>

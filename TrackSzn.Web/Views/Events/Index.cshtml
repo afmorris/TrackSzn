@@ -2,14 +2,8 @@
 
 @{
     ViewBag.Title = "Events";
+    ViewBag.Description = "Use this page to manage your events.";
 }
-
-<h2>Events</h2>
-<p>
-    Use this page to manage your events.
-</p>
-
-<hr />
 
 <table class="table table-bordered table-striped table-hover">
     <thead>
@@ -26,8 +20,8 @@
                 <td>@ev.Id</td>
                 <td class="w-75">@ev.Name</td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", "Events", null, new { @class = "btn btn-outline-info" })
-                    @Html.ActionLink("Delete", "Delete", "Events", null, new { @class = "btn btn-outline-danger" })
+                    @Html.ActionLink("Edit", "EditExisting", "Events", new { id = ev.Id }, new { @class = "btn btn-outline-info" })
+                    @Html.ActionLink("Delete", "DeleteExisting", "Events", new { id = ev.Id }, new { @class = "btn btn-outline-danger" })
                 </td>
             </tr>
         }

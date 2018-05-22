@@ -1,7 +1,8 @@
-﻿using System.Security.Claims;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Web.Mvc;
 using AutoMapper;
-using ServiceStack;
 using ServiceStack.Mvc;
 using ServiceStack.OrmLite;
 using TrackSzn.Models;
@@ -13,25 +14,25 @@ namespace TrackSzn.Web.Controllers
     [RoutePrefix("events")]
     public class EventsController : ServiceStackController
     {
-        [System.Web.Mvc.Route("")]
+        [Route("")]
         public ActionResult Index()
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
             var events = Db.Select<Event>(x => x.UserId == userId);
 
-            var vm = new IndexViewModel(events);
+            var vm = new IndexViewModel {Events = events};
 
             return View(vm);
         }
 
-        [System.Web.Mvc.Route("create")]
+        [Route("create")]
         public ActionResult Create()
         {
             var vm = new CreateViewModel();
             return View(vm);
         }
 
-        [System.Web.Mvc.Route("create")]
+        [Route("create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateViewModel viewModel)
@@ -50,7 +51,7 @@ namespace TrackSzn.Web.Controllers
             return View(viewModel);
         }
 
-        [System.Web.Mvc.Route("bulk-create")]
+        [Route("bulk-create")]
         public ActionResult BulkCreate()
         {
             var vm = new BulkCreateViewModel();
@@ -58,7 +59,7 @@ namespace TrackSzn.Web.Controllers
             return View(vm);
         }
 
-        [System.Web.Mvc.Route("bulk-create")]
+        [Route("bulk-create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BulkCreate(BulkCreateViewModel viewModel)
@@ -67,7 +68,7 @@ namespace TrackSzn.Web.Controllers
 
             foreach (var createViewModel in viewModel.CreateViewModels)
             {
-                if (!createViewModel.Name.IsNullOrEmpty())
+                if (!string.IsNullOrEmpty(createViewModel.Name))
                 {
                     var existing = Db.Single<Event>(x => x.UserId == userId && x.Name == createViewModel.Name);
                     if (existing == null)
@@ -82,35 +83,67 @@ namespace TrackSzn.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [System.Web.Mvc.Route("edit/{id:int}")]
-        public ActionResult Edit(int id)
+        [Route("edit/{id:int}")]
+        public ActionResult EditExisting(int id)
         {
-            var vm = new EditViewModel();
+            var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == id);
+            if (existing == null)
+            {
+                return HttpNotFound();
+            }
 
+            var vm = new EditViewModel {Event = existing};
             return View(vm);
         }
 
-        [System.Web.Mvc.Route("edit")]
+        [Route("edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel viewModel)
         {
+            var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == viewModel.Event.Id);
+            if (existing == null)
+            {
+                return HttpNotFound();
+            }
+
+            viewModel.Event.UserId = userId;
+            Db.Update(viewModel.Event);
             return RedirectToAction(nameof(Index));
         }
 
-        [System.Web.Mvc.Route("delete/{id:int}")]
-        public ActionResult Delete(int id)
+        [Route("delete/{id:int}")]
+        public ActionResult DeleteExisting(int id)
         {
-            var vm = new DeleteViewModel();
+            var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == id);
+            if (existing == null)
+            {
+                return HttpNotFound();
+            }
+
+            var athletePerformances = Db.LoadSelect<AthletePerformance>(x => x.UserId == userId && x.EventId == id).OrderBy(x => x.Athlete.Name).ThenBy(x => x.Meet.Date).ToList();
+            var vm = new DeleteViewModel {Event = existing, AthletePerformances = athletePerformances};
 
             return View(vm);
         }
 
-        [System.Web.Mvc.Route("delete")]
+        [Route("delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(DeleteViewModel viewModel)
         {
+            var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
+            var existing = Db.Single<Event>(x => x.UserId == userId && x.Id == viewModel.Event.Id);
+            if (existing == null)
+            {
+                return HttpNotFound();
+            }
+
+            Db.DeleteById<Event>(viewModel.Event.Id);
+            Db.Delete<AthletePerformance>(x => x.UserId == userId && x.EventId == viewModel.Event.Id);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -4,7 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Track Workout</title>
+    @if (!string.IsNullOrEmpty(ViewBag.Title))
+    {
+        <title>@ViewBag.Title | Track SZN</title>
+    }
+    else
+    {
+        <title>Track SZN</title>
+    }
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-AuEr11i558k+Xa9Spnw45VKJGyQKeqddQG1ASFxPamSRm5fl/sQYzrRK4H37gJ7W" crossorigin="anonymous">
     <link rel="stylesheet" href="@Url.Content("~/Content/Site.css")" />
@@ -75,6 +82,14 @@
         </div>
     </nav>
     <main role="main" class="container">
+        @if (!string.IsNullOrEmpty(ViewBag.Title))
+        {
+            <h2>@ViewBag.Title</h2>
+            <p>
+                @ViewBag.Description
+            </p>
+            <hr />
+        }
         @RenderBody()
         @ServiceStack.MiniProfiler.Profiler.RenderIncludes().AsRaw()
     </main>
