@@ -11,9 +11,27 @@
 
 <hr />
 
-<ul>
-    @foreach (var ev in Model.Events)
-    {
-        <li>@ev.Name</li>
-    }
-</ul>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ev in Model.Events)
+        {
+            <tr>
+                <td>@ev.Id</td>
+                <td class="w-75">@ev.Name</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Events", null, new { @class = "btn btn-outline-info" })
+                    @Html.ActionLink("Delete", "Delete", "Events", null, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+@Html.ActionLink("Create New Event", "Create", "Events", null, new { @class = "btn btn-outline-primary" })
