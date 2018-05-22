@@ -1,0 +1,98 @@
+﻿@model TrackSzn.ViewModels.Lifts.BulkCreateViewModel
+
+@{
+    ViewBag.Title = "Bulk Create Lifts";
+    ViewBag.Description = "Use this page to create lifts in bulk.";
+}
+
+@using (Html.BeginForm("BulkCreate", "Lifts", FormMethod.Post, new { }))
+{
+    @Html.AntiForgeryToken()
+    if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h3 class="alert-heading">Whoops.</h3>
+            @Html.ValidationSummary(false, string.Empty, new { @class = "m-0" })
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <a class="btn btn-outline-info" href="#" id="addNew">Add New</a>
+    <hr />
+    <table class="table table-striped table-bordered" id="dataTable">
+        <thead>
+            <tr>
+                <th class="w-75">Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.CreateViewModels.Count > 0)
+            {
+                for (int i = 0; i < Model.CreateViewModels.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                var j = i;
+                            }
+                            @Html.TextBoxFor(x => x.CreateViewModels[j].Name, new { @class = "form-control", placeholder = "Event Name", autofocus = "autofocus", tabindex = 1 })
+                        </td>
+                        <td class="buttonCell">
+                            @if (i > 0)
+                            {
+                                <a class="btn btn-outline-danger remove" href="#">Remove</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-outline-info" tabindex="2">Save Bulk Data</button>
+}
+
+<hr />
+@Html.ActionLink("Back to Lifts", "Index", "Lifts", null, new { @class = "btn btn-outline-primary" })
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#addNew").click(function(e) {
+                e.preventDefault();
+                var $table = $("#dataTable");
+                var $lastRow = $table.find("tr:last");
+                var $newRow = $lastRow.clone();
+                $.each($newRow.find(":input"), function(index, item) {
+                    $(item).val("");
+                });
+
+                var suffix = $newRow.find(':input:first').attr('name').match(/\d+/);
+                $newRow.find("td:last").html('<a class="btn btn-outline-danger remove" href="#">Remove</a>');
+                $.each($newRow.find(':input'), function () {
+                    // Replaced Name
+                    var oldName = $(this).attr('name');
+                    var newName = oldName.replace('[' + suffix + ']', '[' + (parseInt(suffix) + 1) + ']');
+                    $(this).attr('name', newName);
+                    //Replaced value
+                    var type = $(this).attr('type');
+                    if (type.toLowerCase() === "text") {
+                        $(this).attr('value', '');
+                    }
+
+                });
+                $lastRow.after($newRow);
+            });
+
+            // 2. Remove
+            $('table.table tbody').on("click", "a.remove", function (e) {
+                e.preventDefault();
+                $(this).parent().parent().remove();
+            });
+        });
+    </script>
+}

@@ -51,6 +51,10 @@
     <Compile Include="Events\DeleteViewModel.cs" />
     <Compile Include="Events\EditViewModel.cs" />
     <Compile Include="Events\IndexViewModel.cs" />
+    <Compile Include="Lifts\BulkCreateViewModel.cs" />
+    <Compile Include="Lifts\CreateViewModel.cs" />
+    <Compile Include="Lifts\DeleteViewModel.cs" />
+    <Compile Include="Lifts\EditViewModel.cs" />
     <Compile Include="Lifts\IndexViewModel.cs" />
     <Compile Include="Meets\CalendarViewModel.cs" />
     <Compile Include="Meets\IndexViewModel.cs" />

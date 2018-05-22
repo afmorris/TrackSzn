@@ -1,5 +1,32 @@
-﻿@{
+﻿@model TrackSzn.ViewModels.Lifts.IndexViewModel
+
+@{
     ViewBag.Title = "Lifts";
+    ViewBag.Description = "Use this page to manage your lifts.";
 }
 
-<h2>Lifts</h2>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var lift in Model.Lifts)
+    {
+        <tr>
+            <td>@lift.Id</td>
+            <td class="w-75">@lift.Name</td>
+            <td>
+                @Html.ActionLink("Edit", "EditExisting", "Lifts", new { id = lift.Id }, new { @class = "btn btn-outline-info" })
+                @Html.ActionLink("Delete", "DeleteExisting", "Lifts", new { id = lift.Id }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<hr />
+@Html.ActionLink("Create New Lift", "Create", "Lifts", null, new { @class = "btn btn-outline-primary" })
+@Html.ActionLink("Bulk Create Lifts", "BulkCreate", "Lifts", null, new { @class = "btn btn-outline-primary" })

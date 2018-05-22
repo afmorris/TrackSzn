@@ -1,0 +1,63 @@
+﻿@using TrackSzn.Web.Extensions
+@model TrackSzn.ViewModels.Lifts.DeleteViewModel
+
+@{
+    ViewBag.Title = $"Delete Lift | {Model.Lift.Name}";
+    ViewBag.Description = "Use this page to delete the lift listed below.";
+}
+
+<div class="alert alert-danger" role="alert">
+    <h3 class="alert-heading">Slow down, partner.</h3>
+    <p class="mb-0">This is irreversible! It will delete all the records associated to this lift, as well, so make sure you know what you're doing here!</p>
+</div>
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Athlete</th>
+            <th>Date</th>
+            <th>Set</th>
+            <th>Repetitions</th>
+            <th>Weight</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var performance in Model.AthleteLifts)
+        {
+        <tr>
+            <td>@performance.Athlete.Name</td>
+            <td>@performance.Date.ToString("d")</td>
+            <td>@performance.SetNumber</td>
+            <td>@performance.Repetitions</td>
+            <td>@performance.Weight</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Delete", "Lifts", FormMethod.Post, new { }))
+{
+    @Html.AntiForgeryToken()
+    if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h3 class="alert-heading">Whoops.</h3>
+            @Html.ValidationSummary(false, string.Empty, new { @class = "m-0" })
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Lift.Name)
+        @Html.TextBoxFor(x => x.Lift.Name, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+
+    @Html.HiddenFor(x => x.Lift.UserId)
+    @Html.HiddenFor(x => x.Lift.Id)
+    <button type="submit" class="btn btn-outline-danger" tabindex="1">Delete Lift</button>
+}
+
+<hr />
+@Html.ActionLink("Back to Lifts", "Index", "Lifts", null, new { @class = "btn btn-outline-primary" })

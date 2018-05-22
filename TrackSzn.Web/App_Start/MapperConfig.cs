@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using TrackSzn.Models;
-using TrackSzn.ViewModels.Events;
 
 namespace TrackSzn.Web
 {
@@ -10,7 +9,8 @@ namespace TrackSzn.Web
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<CreateViewModel, Event>();
+                cfg.CreateMap<TrackSzn.ViewModels.Events.CreateViewModel, Event>();
+                cfg.CreateMap<TrackSzn.ViewModels.Lifts.CreateViewModel, Lift>();
             });
         }
     }
