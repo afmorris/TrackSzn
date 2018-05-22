@@ -46,6 +46,7 @@
     <Compile Include="Athletes\IndexViewModel.cs" />
     <Compile Include="Athletes\LiftsViewModel.cs" />
     <Compile Include="Athletes\PerformancesViewModel.cs" />
+    <Compile Include="Events\BulkCreateViewModel.cs" />
     <Compile Include="Events\CreateViewModel.cs" />
     <Compile Include="Events\DeleteViewModel.cs" />
     <Compile Include="Events\EditViewModel.cs" />

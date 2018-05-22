@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using System.Web.Mvc;
 using AutoMapper;
+using ServiceStack;
 using ServiceStack.Mvc;
 using ServiceStack.OrmLite;
 using TrackSzn.Models;
@@ -12,7 +13,7 @@ namespace TrackSzn.Web.Controllers
     [RoutePrefix("events")]
     public class EventsController : ServiceStackController
     {
-        [Route("")]
+        [System.Web.Mvc.Route("")]
         public ActionResult Index()
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
@@ -23,14 +24,14 @@ namespace TrackSzn.Web.Controllers
             return View(vm);
         }
 
-        [Route("create")]
+        [System.Web.Mvc.Route("create")]
         public ActionResult Create()
         {
             var vm = new CreateViewModel();
             return View(vm);
         }
 
-        [Route("create")]
+        [System.Web.Mvc.Route("create")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateViewModel viewModel)
@@ -44,14 +45,44 @@ namespace TrackSzn.Web.Controllers
                 Db.Insert(ev);
                 return RedirectToAction(nameof(Index));
             }
-            else
-            {
-                ModelState.AddModelError("", "Cannot add an event with the same name to your database.");
-                return View(viewModel);
-            }
+
+            ModelState.AddModelError("", "Cannot add an event with the same name to your database.");
+            return View(viewModel);
         }
 
-        [Route("edit/{id:int}")]
+        [System.Web.Mvc.Route("bulk-create")]
+        public ActionResult BulkCreate()
+        {
+            var vm = new BulkCreateViewModel();
+            vm.CreateViewModels.Add(new CreateViewModel());
+            return View(vm);
+        }
+
+        [System.Web.Mvc.Route("bulk-create")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BulkCreate(BulkCreateViewModel viewModel)
+        {
+            var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
+
+            foreach (var createViewModel in viewModel.CreateViewModels)
+            {
+                if (!createViewModel.Name.IsNullOrEmpty())
+                {
+                    var existing = Db.Single<Event>(x => x.UserId == userId && x.Name == createViewModel.Name);
+                    if (existing == null)
+                    {
+                        var ev = Mapper.Map<Event>(createViewModel);
+                        ev.UserId = userId;
+                        Db.Insert(ev);
+                    }
+                }
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [System.Web.Mvc.Route("edit/{id:int}")]
         public ActionResult Edit(int id)
         {
             var vm = new EditViewModel();
@@ -59,7 +90,7 @@ namespace TrackSzn.Web.Controllers
             return View(vm);
         }
 
-        [Route("edit")]
+        [System.Web.Mvc.Route("edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditViewModel viewModel)
@@ -67,7 +98,7 @@ namespace TrackSzn.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("delete/{id:int}")]
+        [System.Web.Mvc.Route("delete/{id:int}")]
         public ActionResult Delete(int id)
         {
             var vm = new DeleteViewModel();
@@ -75,7 +106,7 @@ namespace TrackSzn.Web.Controllers
             return View(vm);
         }
 
-        [Route("delete")]
+        [System.Web.Mvc.Route("delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(DeleteViewModel viewModel)
