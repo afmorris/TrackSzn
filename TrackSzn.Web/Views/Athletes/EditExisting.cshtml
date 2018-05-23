@@ -1,0 +1,38 @@
+﻿@model TrackSzn.ViewModels.Athletes.EditViewModel
+
+@{
+    ViewBag.Title = $"Edit Athlete | {Model.Athlete.Name}";
+    ViewBag.Description = "Use this page to edit the athlete listed below.";
+}
+
+@using (Html.BeginForm("Edit", "Athletes", FormMethod.Post, new { }))
+{
+    @Html.AntiForgeryToken()
+    if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h3 class="alert-heading">Whoops.</h3>
+            @Html.ValidationSummary(false, string.Empty, new { @class = "m-0" })
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Athlete.Name)
+        @Html.TextBoxFor(x => x.Athlete.Name, new { @class = "form-control", autofocus = "autofocus", tabindex = 1 })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Athlete.GraduationYear)
+        @Html.TextBoxFor(x => x.Athlete.GraduationYear, new { @class = "form-control", tabindex = 2 })
+    </div>
+
+    @Html.HiddenFor(x => x.Athlete.UserId)
+    @Html.HiddenFor(x => x.Athlete.Id)
+    <button type="submit" class="btn btn-outline-info" tabindex="3">Edit Athlete</button>
+}
+
+<hr />
+@Html.ActionLink("Back to Athletes", "Index", "Athletes", null, new { @class = "btn btn-outline-primary" })

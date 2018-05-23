@@ -52,7 +52,7 @@ namespace TrackSzn.Web.Controllers
             return View(viewModel);
         }
 
-        [Route("bulk-create")]
+        [Route("bulk")]
         public ActionResult BulkCreate()
         {
             var vm = new BulkCreateViewModel();
@@ -60,7 +60,7 @@ namespace TrackSzn.Web.Controllers
             return View(vm);
         }
 
-        [Route("bulk-create")]
+        [Route("bulk")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult BulkCreate(BulkCreateViewModel viewModel)

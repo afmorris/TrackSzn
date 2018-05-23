@@ -1,0 +1,36 @@
+﻿@model TrackSzn.ViewModels.Athletes.CreateViewModel
+
+@{
+    ViewBag.Title = "Create an Athlete";
+    ViewBag.Description = "Use this page to create a new athlete.";
+}
+
+@using (Html.BeginForm("Create", "Athletes", FormMethod.Post, new { }))
+{
+    @Html.AntiForgeryToken()
+    if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h3 class="alert-heading">Whoops.</h3>
+            @Html.ValidationSummary(false, string.Empty, new { @class = "m-0" })
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", autofocus = "autofocus", tabindex = 1 })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.GraduationYear)
+        @Html.TextBoxFor(x => x.GraduationYear, new { @class = "form-control", tabindex = 2 })
+    </div>
+
+    <button type="submit" class="btn btn-outline-info" tabindex="3">Create Athlete</button>
+}
+
+<hr />
+@Html.ActionLink("Back to Athletes", "Index", "Athletes", null, new { @class = "btn btn-outline-primary" })

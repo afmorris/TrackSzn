@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="Athletes\AthleteLiftsViewModel.cs" />
     <Compile Include="Athletes\AthletePerformancesViewModel.cs" />
+    <Compile Include="Athletes\BulkCreateViewModel.cs" />
+    <Compile Include="Athletes\CreateViewModel.cs" />
+    <Compile Include="Athletes\DeleteViewModel.cs" />
+    <Compile Include="Athletes\EditViewModel.cs" />
     <Compile Include="Athletes\IndexViewModel.cs" />
     <Compile Include="Athletes\LiftsViewModel.cs" />
     <Compile Include="Athletes\PerformancesViewModel.cs" />

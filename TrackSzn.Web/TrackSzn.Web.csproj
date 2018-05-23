@@ -303,6 +303,10 @@
     <Content Include="Views\Meets\Create.cshtml" />
     <Content Include="Views\Meets\DeleteExisting.cshtml" />
     <Content Include="Views\Meets\EditExisting.cshtml" />
+    <Content Include="Views\Athletes\BulkCreate.cshtml" />
+    <Content Include="Views\Athletes\Create.cshtml" />
+    <Content Include="Views\Athletes\DeleteExisting.cshtml" />
+    <Content Include="Views\Athletes\EditExisting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
