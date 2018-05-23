@@ -1,0 +1,47 @@
+﻿@model TrackSzn.ViewModels.Athletes.AthleteLiftsViewModel
+
+@{
+    ViewBag.Title = $"{Model.Athlete.Name} Lifts";
+    ViewBag.Description = $"This page details {Model.Athlete.Name}'s lifts throughout his/her career.";
+}
+
+<table class="table table-bordered table-hover table-striped">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Lift</th>
+        <th>Set #</th>
+        <th>Reps</th>
+        <th>Weight</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var liftGroup in Model.LiftsByDay)
+    {
+        var outputDate = true;
+        foreach (var lift in liftGroup)
+        {
+            <tr>
+                <td>
+                    @if (outputDate)
+                    {
+                        <strong>@liftGroup.Key.ToString("d")</strong>
+                        outputDate = false;
+                    }
+                </td>
+                <td>
+                    @if (lift.SetNumber == 1)
+                    {
+                        <strong>@lift.Lift.Name</strong>
+                    }
+                </td>
+                <td>@lift.SetNumber</td>
+                <td>@lift.Repetitions</td>
+                <td>@lift.Weight</td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+@Html.ActionLink("Back to Athlete List", "Lifts", "Athletes", null, new { @class = "btn btn-info", role = "button" })

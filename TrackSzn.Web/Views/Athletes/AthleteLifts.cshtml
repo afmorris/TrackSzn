@@ -1,53 +1,25 @@
-﻿@model TrackSzn.ViewModels.Athletes.AthleteLiftsViewModel
+﻿@model TrackSzn.ViewModels.Athletes.LiftsViewModel
 
 @{
-    ViewBag.Title = $"{Model.Athlete.Name} Lifts";
+    ViewBag.Title = "Athlete Lifts";
+    ViewBag.Description = "Use this page to navigate to specific athlete lifting information.";
 }
 
-<h2>@Model.Athlete.Name Lifts</h2>
-<p>
-    This page details @Model.Athlete.Name's lifts throughout his/her career.
-</p>
-
-<hr />
-
-<table class="table table-bordered table-hover table-striped">
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>Lift</th>
-        <th>Set #</th>
-        <th>Reps</th>
-        <th>Weight</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var liftGroup in Model.LiftsByDay)
+<div class="card-deck">
+    @foreach (var graduationYearGroup in Model.AthletesByGraduationYear)
     {
-        var outputDate = true;
-        foreach (var lift in liftGroup)
-        {
-            <tr>
-                <td>
-                    @if (outputDate)
-                    {
-                        <strong>@liftGroup.Key.ToString("d")</strong>
-                        outputDate = false;
-                    }
-                </td>
-                <td>
-                    @if (lift.SetNumber == 1)
-                    {
-                        <strong>@lift.Lift.Name</strong>
-                    }
-                </td>
-                <td>@lift.SetNumber</td>
-                <td>@lift.Repetitions</td>
-                <td>@lift.Weight</td>
-            </tr>
-        }
+        <div class="card">
+            <div class="card-header">
+                @graduationYearGroup.Key
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var athlete in graduationYearGroup)
+                {
+                    <li class="list-group-item">
+                        @Html.ActionLink(athlete.Name, "AthleteLiftList", "Athletes", new { id = athlete.Id }, new { })
+                    </li>
+                }
+            </ul>
+        </div>
     }
-    </tbody>
-</table>
-
-@Html.ActionLink("Back to Athlete List", "Lifts", "Athletes", null, new { @class = "btn btn-info", role = "button" })
+</div>

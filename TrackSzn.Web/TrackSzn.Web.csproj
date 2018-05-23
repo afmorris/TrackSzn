@@ -285,10 +285,10 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Events\Index.cshtml" />
     <Content Include="Views\Athletes\Index.cshtml" />
-    <Content Include="Views\Athletes\Lifts.cshtml" />
     <Content Include="Views\Athletes\AthleteLifts.cshtml" />
-    <Content Include="Views\Athletes\Performances.cshtml" />
+    <Content Include="Views\Athletes\AthleteLiftList.cshtml" />
     <Content Include="Views\Athletes\AthletePerformances.cshtml" />
+    <Content Include="Views\Athletes\AthletePerformanceList.cshtml" />
     <Content Include="Views\Meets\Index.cshtml" />
     <Content Include="Views\Meets\Calendar.cshtml" />
     <Content Include="Views\Events\Create.cshtml" />

@@ -1,42 +1,25 @@
-﻿@using TrackSzn.Web.Extensions
-@model TrackSzn.ViewModels.Athletes.AthletePerformancesViewModel
+﻿@model TrackSzn.ViewModels.Athletes.PerformancesViewModel
 
 @{
-    ViewBag.Title = $"{Model.Athlete.Name} Performances";
+    ViewBag.Title = "Athlete Performances";
+    ViewBag.Description = "Use this page to navigate to specific athlete performance information.";
 }
 
-<h2>@Model.Athlete.Name Performances</h2>
-<p>
-    This page details @Model.Athlete.Name's performances throughout his/her career.
-</p>
-
-<hr />
-
-@foreach (var eventGrouping in Model.PerformancesByEvent)
-{
-    <h3>@eventGrouping.Key.Name</h3>
-
-    <table class="table table-bordered table-hover table-striped">
-        <thead>
-        <tr>
-            <th>Meet</th>
-            <th>Date</th>
-            <th>Performance</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var performance in eventGrouping)
-        {
-            <tr>
-                <td>@performance.Meet.Name</td>
-                <td>@performance.Meet.Date.ToString("d")</td>
-                <td>@performance.Performance.FormatPerformance(eventGrouping.Key)</td>
-            </tr>
-        }
-        </tbody>
-    </table>
-
-    <hr />
-}
-
-@Html.ActionLink("Back to Athlete List", "Performances", "Athletes", null, new { @class = "btn btn-info", role = "button" })
+<div class="card-deck">
+    @foreach (var graduationYearGroup in Model.AthletesByGraduationYear)
+    {
+        <div class="card">
+            <div class="card-header">
+                @graduationYearGroup.Key
+            </div>
+            <ul class="list-group list-group-flush">
+                @foreach (var athlete in graduationYearGroup)
+                {
+                    <li class="list-group-item">
+                        @Html.ActionLink(athlete.Name, "AthletePerformanceList", "Athletes", new { id = athlete.Id }, new { })
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>

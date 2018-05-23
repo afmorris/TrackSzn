@@ -150,7 +150,7 @@ namespace TrackSzn.Web.Controllers
         }
 
         [Route("lifts")]
-        public ActionResult Lifts()
+        public ActionResult AthleteLifts()
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
             var athletes = Db.Select<Athlete>(x => x.UserId == userId);
@@ -162,7 +162,7 @@ namespace TrackSzn.Web.Controllers
         }
 
         [Route("lifts/athletes/{id:int}")]
-        public ActionResult AthleteLifts(int id)
+        public ActionResult AthleteLiftList(int id)
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
             var athlete = Db.Single<Athlete>(x => x.Id == id && x.UserId == userId);
@@ -175,7 +175,7 @@ namespace TrackSzn.Web.Controllers
         }
 
         [Route("performances")]
-        public ActionResult Performances()
+        public ActionResult AthletePerformances()
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
             var athletes = Db.Select<Athlete>(x => x.UserId == userId);
@@ -187,7 +187,7 @@ namespace TrackSzn.Web.Controllers
         }
 
         [Route("performances/athlete/{id:int}")]
-        public ActionResult AthletePerformances(int id)
+        public ActionResult AthletePerformanceList(int id)
         {
             var userId = ClaimsPrincipal.Current.FindFirst("user_id").Value;
             var athlete = Db.Single<Athlete>(x => x.Id == id && x.UserId == userId);
