@@ -299,6 +299,10 @@
     <Content Include="Views\Lifts\DeleteExisting.cshtml" />
     <Content Include="Views\Lifts\EditExisting.cshtml" />
     <Content Include="Views\Lifts\Create.cshtml" />
+    <Content Include="Views\Meets\BulkCreate.cshtml" />
+    <Content Include="Views\Meets\Create.cshtml" />
+    <Content Include="Views\Meets\DeleteExisting.cshtml" />
+    <Content Include="Views\Meets\EditExisting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

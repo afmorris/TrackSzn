@@ -96,20 +96,20 @@ namespace TrackSzn.Web
 
         public static List<Meet> Meets => new List<Meet>
         {
-            new Meet { Name = "Dual vs. Woodridge", Date = new DateTimeOffset(2018, 4, 24, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
-            new Meet { Name = "Orange Relays", Date = new DateTimeOffset(2018, 4, 27, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
-            new Meet { Name = "Smithville 9th/10th Grade Invitational", Date = new DateTimeOffset(2018, 5, 7, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
-            new Meet { Name = "PTC Track and Field Championships", Date = new DateTimeOffset(2018, 5, 9, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
+            new Meet { Name = "Dual vs. Woodridge", Date = new DateTime(2018, 4, 24), UserId = UserIds.TonyMorris },
+            new Meet { Name = "Orange Relays", Date = new DateTime(2018, 4, 27), UserId = UserIds.TonyMorris },
+            new Meet { Name = "Smithville 9th/10th Grade Invitational", Date = new DateTime(2018, 5, 7), UserId = UserIds.TonyMorris },
+            new Meet { Name = "PTC Track and Field Championships", Date = new DateTime(2018, 5, 9), UserId = UserIds.TonyMorris },
         };
 
         public static List<AthleteLift> AthleteLifts => new List<AthleteLift>
         {
-            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.HangClean, SetNumber = 1, Repetitions = 5, Weight = 95, Date = new DateTimeOffset(2018, 4, 17, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
-            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.HangClean, SetNumber = 2, Repetitions = 5, Weight = 95, Date = new DateTimeOffset(2018, 4, 17, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
-            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.HangClean, SetNumber = 3, Repetitions = 5, Weight = 95, Date = new DateTimeOffset(2018, 4, 17, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
-            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.BenchPress, SetNumber = 1, Repetitions = 5, Weight = 115, Date = new DateTimeOffset(2018, 4, 17, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
-            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.BenchPress, SetNumber = 2, Repetitions = 5, Weight = 115, Date = new DateTimeOffset(2018, 4, 17, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
-            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.BenchPress, SetNumber = 3, Repetitions = 5, Weight = 115, Date = new DateTimeOffset(2018, 4, 17, 0, 0, 0, TimeSpan.Zero), UserId = UserIds.TonyMorris },
+            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.HangClean, SetNumber = 1, Repetitions = 5, Weight = 95, Date = new DateTime(2018, 4, 17), UserId = UserIds.TonyMorris },
+            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.HangClean, SetNumber = 2, Repetitions = 5, Weight = 95, Date = new DateTime(2018, 4, 17), UserId = UserIds.TonyMorris },
+            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.HangClean, SetNumber = 3, Repetitions = 5, Weight = 95, Date = new DateTime(2018, 4, 17), UserId = UserIds.TonyMorris },
+            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.BenchPress, SetNumber = 1, Repetitions = 5, Weight = 115, Date = new DateTime(2018, 4, 17), UserId = UserIds.TonyMorris },
+            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.BenchPress, SetNumber = 2, Repetitions = 5, Weight = 115, Date = new DateTime(2018, 4, 17), UserId = UserIds.TonyMorris },
+            new AthleteLift { AthleteId = AthleteIds.EvanAllen, LiftId = LiftIds.BenchPress, SetNumber = 3, Repetitions = 5, Weight = 115, Date = new DateTime(2018, 4, 17), UserId = UserIds.TonyMorris },
         };
 
         public static List<AthletePerformance> AthletePerformances => new List<AthletePerformance>

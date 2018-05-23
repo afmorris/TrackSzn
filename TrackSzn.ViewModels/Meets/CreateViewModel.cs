@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace TrackSzn.Models
+namespace TrackSzn.ViewModels.Meets
 {
-    public class Meet : BaseModel
+    public class CreateViewModel
     {
         public string Name { get; set; }
         public DateTime Date { get; set; }

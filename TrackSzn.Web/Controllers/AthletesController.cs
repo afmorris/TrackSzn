@@ -40,7 +40,7 @@ namespace TrackSzn.Web.Controllers
             var liftsByDay = athlete.AthleteLifts.OrderBy(x => x.LiftId).ThenBy(x => x.SetNumber).GroupBy(x => x.Date);
             var vm = new AthleteLiftsViewModel(athlete, liftsByDay);
 
-            return this.View(vm);
+            return View(vm);
         }
 
         [Route("performances")]
@@ -65,7 +65,7 @@ namespace TrackSzn.Web.Controllers
             var performancesByEvent = athlete.AthletePerformances.OrderByDescending(x => x.Meet.Date).GroupBy(x => x.Event);
             var vm = new AthletePerformancesViewModel(athlete, performancesByEvent);
 
-            return this.View(vm);
+            return View(vm);
         }
     }
 }

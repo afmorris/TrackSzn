@@ -143,8 +143,8 @@ namespace TrackSzn.Web.Controllers
                 return HttpNotFound();
             }
 
-            Db.UpdateOnly(() => new Event { IsDeleted = true, DeletedDate = DateTimeOffset.Now }, where: x => x.Id == viewModel.Event.Id && x.UserId == userId && !x.IsDeleted);
-            Db.UpdateOnly(() => new AthletePerformance { IsDeleted = true, DeletedDate = DateTimeOffset.Now }, where: x => x.EventId == viewModel.Event.Id && x.UserId == userId && !x.IsDeleted);
+            Db.UpdateOnly(() => new Event { IsDeleted = true, DeletedDate = DateTime.Now }, where: x => x.Id == viewModel.Event.Id && x.UserId == userId && !x.IsDeleted);
+            Db.UpdateOnly(() => new AthletePerformance { IsDeleted = true, DeletedDate = DateTime.Now }, where: x => x.EventId == viewModel.Event.Id && x.UserId == userId && !x.IsDeleted);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -1,11 +1,11 @@
-﻿@model TrackSzn.ViewModels.Lifts.CreateViewModel
+﻿@model TrackSzn.ViewModels.Meets.CreateViewModel
 
 @{
-    ViewBag.Title = "Create an Lift";
-    ViewBag.Description = "Use this page to create a new lift.";
+    ViewBag.Title = "Create a Meet";
+    ViewBag.Description = "Use this page to create a new meet.";
 }
 
-@using (Html.BeginForm("Create", "Lifts", FormMethod.Post, new { }))
+@using (Html.BeginForm("Create", "Meets", FormMethod.Post, new { }))
 {
     @Html.AntiForgeryToken()
     if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
@@ -24,8 +24,13 @@
         @Html.TextBoxFor(x => x.Name, new { @class = "form-control", autofocus = "autofocus", tabindex = 1 })
     </div>
 
-    <button type="submit" class="btn btn-outline-info" tabindex="2">Create Lift</button>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Date)
+        @Html.TextBoxFor(x => x.Date, new { @class = "form-control", autofocus = "autofocus", tabindex = 2 })
+    </div>
+
+    <button type="submit" class="btn btn-outline-info" tabindex="3">Create Meet</button>
 }
 
 <hr />
-@Html.ActionLink("Back to Lifts", "Index", "Lifts", null, new { @class = "btn btn-outline-primary" })
+@Html.ActionLink("Back to Meets", "Index", "Meets", null, new { @class = "btn btn-outline-primary" })

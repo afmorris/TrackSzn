@@ -11,6 +11,7 @@ namespace TrackSzn.Web
             {
                 cfg.CreateMap<TrackSzn.ViewModels.Events.CreateViewModel, Event>();
                 cfg.CreateMap<TrackSzn.ViewModels.Lifts.CreateViewModel, Lift>();
+                cfg.CreateMap<TrackSzn.ViewModels.Meets.CreateViewModel, Meet>();
             });
         }
     }

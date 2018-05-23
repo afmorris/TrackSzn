@@ -56,7 +56,11 @@
     <Compile Include="Lifts\DeleteViewModel.cs" />
     <Compile Include="Lifts\EditViewModel.cs" />
     <Compile Include="Lifts\IndexViewModel.cs" />
+    <Compile Include="Meets\BulkCreateViewModel.cs" />
     <Compile Include="Meets\CalendarViewModel.cs" />
+    <Compile Include="Meets\CreateViewModel.cs" />
+    <Compile Include="Meets\DeleteViewModel.cs" />
+    <Compile Include="Meets\EditViewModel.cs" />
     <Compile Include="Meets\IndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

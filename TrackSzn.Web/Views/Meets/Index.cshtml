@@ -1,7 +1,34 @@
-﻿
+﻿@model TrackSzn.ViewModels.Meets.IndexViewModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Meets";
+    ViewBag.Description = "Use this page to manage your meets.";
 }
 
-<h2>Index</h2>
-
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var meet in Model.Meets)
+        {
+        <tr>
+            <td>@meet.Id</td>
+            <td class="w-50">@meet.Name</td>
+            <td class="w-25">@meet.Date.ToString("d")</td>
+            <td>
+                @Html.ActionLink("Edit", "EditExisting", "Meets", new { id = meet.Id }, new { @class = "btn btn-outline-info" })
+                @Html.ActionLink("Delete", "DeleteExisting", "Meets", new { id = meet.Id }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<hr />
+@Html.ActionLink("Create New Meet", "Create", "Meets", null, new { @class = "btn btn-outline-primary" })
+@Html.ActionLink("Bulk Create Meets", "BulkCreate", "Meets", null, new { @class = "btn btn-outline-primary" })

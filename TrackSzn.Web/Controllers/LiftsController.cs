@@ -41,9 +41,9 @@ namespace TrackSzn.Web.Controllers
             var existing = Db.Single<Lift>(x => x.UserId == userId && x.Name == viewModel.Name && !x.IsDeleted);
             if (existing == null)
             {
-                var ev = Mapper.Map<Lift>(viewModel);
-                ev.UserId = userId;
-                Db.Insert(ev);
+                var lift = Mapper.Map<Lift>(viewModel);
+                lift.UserId = userId;
+                Db.Insert(lift);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -73,9 +73,9 @@ namespace TrackSzn.Web.Controllers
                     var existing = Db.Single<Lift>(x => x.UserId == userId && x.Name == createViewModel.Name && !x.IsDeleted);
                     if (existing == null)
                     {
-                        var ev = Mapper.Map<Lift>(createViewModel);
-                        ev.UserId = userId;
-                        Db.Insert(ev);
+                        var lift = Mapper.Map<Lift>(createViewModel);
+                        lift.UserId = userId;
+                        Db.Insert(lift);
                     }
                 }
             }
@@ -142,8 +142,8 @@ namespace TrackSzn.Web.Controllers
                 return HttpNotFound();
             }
 
-            Db.UpdateOnly(() => new Lift { IsDeleted = true, DeletedDate = DateTimeOffset.Now }, where: x => x.Id == viewModel.Lift.Id && x.UserId == userId && !x.IsDeleted);
-            Db.UpdateOnly(() => new AthleteLift { IsDeleted = true, DeletedDate = DateTimeOffset.Now }, where: x => x.LiftId == viewModel.Lift.Id && x.UserId == userId && !x.IsDeleted);
+            Db.UpdateOnly(() => new Lift { IsDeleted = true, DeletedDate = DateTime.Now }, where: x => x.Id == viewModel.Lift.Id && x.UserId == userId && !x.IsDeleted);
+            Db.UpdateOnly(() => new AthleteLift { IsDeleted = true, DeletedDate = DateTime.Now }, where: x => x.LiftId == viewModel.Lift.Id && x.UserId == userId && !x.IsDeleted);
             return RedirectToAction(nameof(Index));
         }
     }

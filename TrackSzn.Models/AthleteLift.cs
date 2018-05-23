@@ -10,7 +10,7 @@ namespace TrackSzn.Models
         public int SetNumber { get; set; }
         public int Repetitions { get; set; }
         public float Weight { get; set; }
-        public DateTimeOffset Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Reference]
         public Athlete Athlete { get; set; }

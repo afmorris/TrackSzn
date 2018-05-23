@@ -1,0 +1,38 @@
+﻿@model TrackSzn.ViewModels.Meets.EditViewModel
+
+@{
+    ViewBag.Title = $"Edit Meet | {Model.Meet.Name}";
+    ViewBag.Description = "Use this page to edit the meet listed below.";
+}
+
+@using (Html.BeginForm("Edit", "Meets", FormMethod.Post, new { }))
+{
+    @Html.AntiForgeryToken()
+    if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <h3 class="alert-heading">Whoops.</h3>
+            @Html.ValidationSummary(false, string.Empty, new { @class = "m-0" })
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Meet.Name)
+        @Html.TextBoxFor(x => x.Meet.Name, new { @class = "form-control", autofocus = "autofocus", tabindex = 1 })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Meet.Date)
+        @Html.TextBoxFor(x => x.Meet.Date, new { @class = "form-control", autofocus = "autofocus", tabindex = 2 })
+    </div>
+
+    @Html.HiddenFor(x => x.Meet.UserId)
+    @Html.HiddenFor(x => x.Meet.Id)
+    <button type="submit" class="btn btn-outline-info" tabindex="3">Edit Meet</button>
+}
+
+<hr />
+@Html.ActionLink("Back to Meets", "Index", "Meets", null, new { @class = "btn btn-outline-primary" })

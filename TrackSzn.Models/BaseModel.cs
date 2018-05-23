@@ -17,6 +17,6 @@ namespace TrackSzn.Models
         [Index]
         public bool IsDeleted { get; set; } = false;
 
-        public DateTimeOffset DeletedDate { get; set; } = DateTimeOffset.MaxValue;
+        public DateTime DeletedDate { get; set; } = DateTime.MaxValue;
     }
 }

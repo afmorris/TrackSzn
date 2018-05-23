@@ -1,11 +1,11 @@
-﻿@model TrackSzn.ViewModels.Lifts.BulkCreateViewModel
+﻿@model TrackSzn.ViewModels.Meets.BulkCreateViewModel
 
 @{
-    ViewBag.Title = "Bulk Create Lifts";
-    ViewBag.Description = "Use this page to create lifts in bulk.";
+    ViewBag.Title = "Bulk Create Meets";
+    ViewBag.Description = "Use this page to create meets in bulk.";
 }
 
-@using (Html.BeginForm("BulkCreate", "Lifts", FormMethod.Post, new { }))
+@using (Html.BeginForm("BulkCreate", "Meets", FormMethod.Post, new { }))
 {
     @Html.AntiForgeryToken()
     if (ViewData.ModelState[""] != null && ViewData.ModelState[""].Errors.Any())
@@ -24,7 +24,8 @@
     <table class="table table-striped table-bordered" id="dataTable">
         <thead>
             <tr>
-                <th class="w-75">Name</th>
+                <th class="w-50">Name</th>
+                <th class="w-25">Date</th>
                 <th></th>
             </tr>
         </thead>
@@ -38,7 +39,10 @@
                             @{
                                 var j = i;
                             }
-                            @Html.TextBoxFor(x => x.CreateViewModels[j].Name, new { @class = "form-control", placeholder = "Lift Name", autofocus = "autofocus", tabindex = 1 })
+                            @Html.TextBoxFor(x => x.CreateViewModels[j].Name, new { @class = "form-control", placeholder = "Meet Name", autofocus = "autofocus", tabindex = 1 + i })
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(x => x.CreateViewModels[j].Date, new { @class = "form-control", placeholder = "Meet Date", tabindex = 2 + i })
                         </td>
                         <td class="buttonCell">
                             @if (i > 0)
@@ -52,11 +56,11 @@
         </tbody>
     </table>
 
-    <button type="submit" class="btn btn-outline-info" tabindex="2">Save Bulk Data</button>
+    <button type="submit" class="btn btn-outline-info">Save Bulk Data</button>
 }
 
 <hr />
-@Html.ActionLink("Back to Lifts", "Index", "Lifts", null, new { @class = "btn btn-outline-primary" })
+@Html.ActionLink("Back to Meets", "Index", "Meets", null, new { @class = "btn btn-outline-primary" })
 
 @section scripts
 {
