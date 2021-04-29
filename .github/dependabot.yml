@@ -1,0 +1,41 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "10:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Auth0.Core
+    versions:
+    - 7.5.0
+    - 7.5.1
+    - 7.6.0
+    - 7.6.1
+    - 7.7.0
+  - dependency-name: Auth0.AuthenticationApi
+    versions:
+    - 7.5.0
+    - 7.5.1
+    - 7.6.0
+    - 7.6.1
+    - 7.7.0
+  - dependency-name: ServiceStack.OrmLite
+    versions:
+    - 5.10.4
+  - dependency-name: ServiceStack.Text
+    versions:
+    - 5.10.4
+  - dependency-name: ServiceStack.NetFramework
+    versions:
+    - 5.10.4
+  - dependency-name: ServiceStack.OrmLite.Sqlite
+    versions:
+    - 5.10.4
+  - dependency-name: ServiceStack.Interfaces
+    versions:
+    - 5.10.4
+  - dependency-name: Microsoft.Net.Compilers
+    versions:
+    - 3.8.0
